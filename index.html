@@ -1,100 +1,51 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Frase Aleatória</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <main>
-    <div id="card" class="card">
-      <div id="phrase" class="phrase">Carregando…</div>
-      <div id="author" class="author"></div>
-      <div class="controls">
-        <button id="refresh">Outra frase</button>
-        <a id="share" href="#" target="_blank" rel="noopener">Compartilhar</a>
-      </div>
-      <small class="hint">Escaneie novamente para nova frase. Se der problema, aguarde 1s e tente novamente.</small>
-    </div>
-  </main>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frases Aleatórias</title>
 
-<script>
-(async function(){
-  const phraseEl = document.getElementById('phrase');
-  const authorEl = document.getElementById('author');
-  const refreshBtn = document.getElementById('refresh');
-  const share = document.getElementById('share');
-
-  // Tenta buscar phrases.json, se não existir, gera internamente (fallback).
-  async function loadPhrases(){
-    try {
-      // adiciona cache-bust para garantir versão atualizada
-      const resp = await fetch('phrases.json?t=' + Date.now(), {cache: 'no-store'});
-      if(!resp.ok) throw new Error('no json');
-      const arr = await resp.json();
-      if(!Array.isArray(arr) || arr.length === 0) throw new Error('invalid');
-      return arr;
-    } catch(e) {
-      // fallback: gera 1000 frases programaticamente
-      const templates = [
-        "Você é capaz de mais do que imagina.",
-        "Um passo de cada vez.",
-        "Ria sempre que puder.",
-        "A persistência vence o talento quando o talento não persiste.",
-        "Transforme o medo em combustível.",
-        "Se errou, aprenda — e siga.",
-        "Hoje é um bom dia para começar.",
-        "Faça com amor ou não faça.",
-        "Não é sobre ser o melhor, é sobre ser melhor que ontem.",
-        "Respire — e continue."
-      ];
-      // duplicar e variar até 1000
-      const out = [];
-      while(out.length < 1000){
-        for(const t of templates){
-          const suffix = Math.random() < 0.25 ? " — autor desconhecido" : "";
-          out.push(t + suffix + (out.length % 7 === 0 ? " ✨" : ""));
-          if(out.length >= 1000) break;
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            text-align: center;
+            padding: 40px;
         }
-      }
-      return out;
-    }
-  }
 
-  const phrases = await loadPhrases();
+        #box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        }
 
-  function pickRandom(){
-    // returna objeto {text, author?}
-    const raw = phrases[Math.floor(Math.random() * phrases.length)];
-    // se for objeto já estruturado:
-    if(typeof raw === 'object' && raw !== null){
-      return {text: raw.text || '', author: raw.author || ''};
-    }
-    // se for string com " — autor", tenta separar
-    const parts = String(raw).split(' — ');
-    return { text: parts[0], author: parts[1] || '' };
-  }
+        #phrase {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
 
-  function show(){
-    const p = pickRandom();
-    phraseEl.textContent = p.text;
-    authorEl.textContent = p.author ? '— ' + p.author : '';
-    // atualizar link de compartilhar
-    const shareText = encodeURIComponent(p.text + (p.author ? ' — ' + p.author : ''));
-    share.href = https://api.whatsapp.com/send?text=${shareText};
-  }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
 
-  refreshBtn.addEventListener('click', show);
+<body>
 
-  // mostra imediatamente
-  show();
+    <div id="box">
+        <p id="phrase">Carregando...</p>
+        <button onclick="loadPhrase()">Nova frase</button>
+    </div>
 
-  // força recarregar uma nova frase se a URL for acessada de novo rapidamente:
-  if ('navigation' in performance && performance.getEntriesByType) {
-    // nada extra necessário — cada load chama show().
-  }
-})();
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
