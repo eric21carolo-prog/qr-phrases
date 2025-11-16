@@ -1,21 +1,20 @@
 async function loadPhrase() {
-  const phraseElement = document.getElementById('phrase');
-  phraseElement.innerText = "Carregando...";
+    const phraseElement = document.getElementById("phrase");
 
-  try {
-    const response = await fetch("https://eric21carolo-prog.github.io/qr-phrases/phrases.json");
-    const phrases = await response.json();
+    try {
+        const response = await fetch("https://eric21carolo-prog.github.io/qr-phrases/phrases.json");
 
-    const randomIndex = Math.floor(Math.random() * phrases.length);
-    phraseElement.innerText = phrases[randomIndex];
+        if (!response.ok) {
+            phraseElement.innerText = "Erro ao carregar frases.";
+            return;
+        }
 
-  } catch (error) {
-    phraseElement.innerText = "Erro ao carregar frase. Tente novamente.";
-    console.error(error);
-  }
+        const phrases = await response.json();
+        const randomIndex = Math.floor(Math.random() * phrases.length);
+        phraseElement.innerText = phrases[randomIndex];
+    } catch (error) {
+        phraseElement.innerText = "Erro de conexão.";
+    }
 }
 
-document.getElementById('newPhrase').addEventListener('click', loadPhrase);
-
-// Carrega a primeira frase ao abrir a página
 loadPhrase();
