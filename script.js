@@ -24,14 +24,14 @@ async function loadPhrases(){
   }
 }
 
-// Escolhe e mostra frase aleatória (tratamento autor se houver)
+// Escolhe e mostra frase aleatória
 function showRandom(){
   if(!phrases || phrases.length === 0) return;
+
   const raw = phrases[Math.floor(Math.random() * phrases.length)];
-  // se for objeto {text,author} ou string
   let text = "", author = "";
+
   if(typeof raw === "string") {
-    // tenta separar " — autor" se o usuário usou esse padrão
     const parts = raw.split(' — ');
     text = parts[0];
     author = parts[1] || "";
@@ -39,23 +39,23 @@ function showRandom(){
     text = raw.text || "";
     author = raw.author || "";
   }
-  // animação suave
+
   phraseEl.style.opacity = 0;
   setTimeout(()=> {
     phraseEl.textContent = text;
-    authorEl.textContent = author ? — ${author} : "";
+    authorEl.textContent = author ? `— ${author}` : "";
     phraseEl.style.opacity = 1;
   }, 260);
 
-  // atualizar link de compartilhamento (WhatsApp)
   const shareText = encodeURIComponent(text + (author ? ` — ${author}` : ""));
-  shareLink.href = https://api.whatsapp.com/send?text=${shareText};
+  shareLink.href = `https://api.whatsapp.com/send?text=${shareText}`;
 }
 
 // copiar para área de transferência
 async function copyToClipboard(){
   const txt = phraseEl.textContent || "";
   if(!txt) return;
+
   try{
     await navigator.clipboard.writeText(txt);
     copyBtn.textContent = "Copiado!";
