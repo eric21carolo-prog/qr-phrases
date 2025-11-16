@@ -1,15 +1,68 @@
-:root{
-  --bg:#f7f7f8;
-  --card:#ffffff;
-  --text:#111;
-  --muted:#666;
+/* Fundo animado */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, #4f46e5, #9333ea, #ec4899, #f97316);
+    background-size: 400% 400%;
+    animation: gradient 12s ease infinite;
+    font-family: 'Poppins', sans-serif;
 }
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
-body{display:flex;align-items:center;justify-content:center;background:var(--bg);padding:20px}
-.card{width:100%;max-width:520px;background:var(--card);padding:28px;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,0.08);text-align:center}
-.phrase{font-size:1.25rem;margin-bottom:12px;color:var(--text)}
-.author{color:var(--muted);margin-bottom:14px}
-.controls{display:flex;gap:10px;justify-content:center;margin-bottom:6px}
-button, a{padding:8px 14px;border-radius:8px;border:1px solid #ddd;background:#fff;text-decoration:none;color:var(--text);cursor:pointer}
-.hint{display:block;color:var(--muted);font-size:.8rem;margin-top:8px}
+
+/* Animação do fundo */
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+}
+
+.title {
+    color: white;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Cartão de frase estilo “Glassmorphism” */
+.card {
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 300;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    transition: opacity 0.4s ease;
+    min-height: 100px;
+}
+
+/* Botão premium */
+.btn {
+    margin-top: 25px;
+    padding: 15px 30px;
+    border: none;
+    background: white;
+    color: #4f46e5;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    background: #f3f3f3;
+}
