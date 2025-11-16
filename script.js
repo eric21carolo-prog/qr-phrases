@@ -3,7 +3,7 @@ async function loadPhrase() {
   phraseElement.innerText = "Carregando...";
 
   try {
-    const response = await fetch("phrases.json");
+    const response = await fetch("https://eric21carolo-prog.github.io/qr-phrases/phrases.json");
     const phrases = await response.json();
 
     const randomIndex = Math.floor(Math.random() * phrases.length);
