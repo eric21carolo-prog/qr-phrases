@@ -1,94 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frases Aleatórias Premium</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem do Dia</title>
+    <link rel="stylesheet" href="style.css">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* Fundo animado */
-        body {
-            margin: 0;
-            font-family: "Poppins", sans-serif;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(-45deg, #0f0f0f, #1e1e1e, #222, #000);
-            background-size: 400% 400%;
-            animation: bgMove 12s ease infinite;
-        }
-
-        @keyframes bgMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Caixa da frase */
-        #box {
-            width: 90%;
-            max-width: 600px;
-            text-align: center;
-            padding: 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            animation: fadeIn 0.8s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Frase com fundo estilizado */
-        #phrase {
-            font-family: "Playfair Display", serif;
-            font-size: 26px;
-            margin-bottom: 25px;
-            line-height: 1.4;
-            padding: 25px;
-            border-radius: 15px;
-            color: white;
-            font-weight: 600;
-            animation: fadePhrase 0.6s ease;
-        }
-
-        @keyframes fadePhrase {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* Botão premium */
-        button {
-            padding: 12px 30px;
-            border: none;
-            background: linear-gradient(135deg, #00eaff, #0066ff);
-            color: white;
-            font-size: 18px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        }
-
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
-        }
-    </style>
+    <!-- FONTES PREMIUM -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <div id="box">
-        <p id="phrase">Carregando...</p>
-        <button onclick="loadPhrase()">Nova frase</button>
+
+    <div class="container">
+        <h1 class="title">Sua mensagem</h1>
+        <div id="phrase-box" class="card">Carregando mensagem...</div>
+        <button id="new-phrase" class="btn">Nova mensagem</button>
     </div>
 
     <script src="script.js"></script>
