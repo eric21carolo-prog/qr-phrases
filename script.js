@@ -1,30 +1,21 @@
-// generator.js
-const fs = require('fs');
-const parts = [
-  "Você é capaz de",
-  "Nunca esqueça:",
-  "Dica:",
-  "Lembre-se sempre:",
-  "Experimente:",
-  "O segredo é",
-  "Uma verdade simples:"
-];
-const ends = [
-  "dar o primeiro passo.",
-  "rien en français.",
-  "ser gentil consigo mesmo.",
-  "rir antes do café.",
-  "persistir com calma.",
-  "não desistir.",
-  "transformar o medo em escada."
-];
+async function loadPhrase() {
+  const phraseElement = document.getElementById('phrase');
+  phraseElement.innerText = "Carregando...";
 
-const out = [];
-for(let i=0;i<1000;i++){
-  const a = parts[Math.floor(Math.random()*parts.length)];
-  const b = ends[Math.floor(Math.random()*ends.length)];
-  const flair = Math.random() < 0.15 ? " — autor desconhecido" : "";
-  out.push(${a} ${b}${flair});
+  try {
+    const response = await fetch("phrases.json");
+    const phrases = await response.json();
+
+    const randomIndex = Math.floor(Math.random() * phrases.length);
+    phraseElement.innerText = phrases[randomIndex];
+
+  } catch (error) {
+    phraseElement.innerText = "Erro ao carregar frase. Tente novamente.";
+    console.error(error);
+  }
 }
-fs.writeFileSync('phrases.json', JSON.stringify(out, null, 2), 'utf8');
-console.log('phrases.json gerado com', out.length, 'frases');
+
+document.getElementById('newPhrase').addEventListener('click', loadPhrase);
+
+// Carrega a primeira frase ao abrir a página
+loadPhrase();
