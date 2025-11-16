@@ -1,31 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensagem do Dia</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mensagem — Eric Carolo</title>
 
-    <!-- FONTES PREMIUM -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-    <div class="bg-effect"></div>
-
-    <div class="container">
-        <h1 class="title">Mensagem para Você</h1>
-
-        <div id="phrase-box" class="card">
-            Carregando mensagem...
+  <main class="wrap">
+    <header class="header">
+      <div class="brand">
+        <div class="logo-ec" aria-hidden="true">
+          <!-- simples monograma -->
+          <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" stroke="#D4AF37" stroke-width="4" fill="none"/>
+            <text x="50%" y="54%" text-anchor="middle" font-family="Playfair Display, serif" font-size="44" fill="#D4AF37" font-weight="700">EC</text>
+          </svg>
         </div>
+        <div class="brand-text">
+          <h1>Mensagens</h1>
+          <small class="sub">Frases aleatórias — Eric Carolo</small>
+        </div>
+      </div>
+    </header>
 
-        <button id="new-phrase" class="btn">Nova mensagem</button>
-    </div>
+    <section class="card" role="region" aria-label="Frase do dia">
+      <p id="phrase" class="phrase">Carregando...</p>
+      <div class="meta">
+        <span id="author" class="author"></span>
+        <div class="controls">
+          <button id="new-phrase" class="btn btn-primary" aria-label="Nova frase">Nova mensagem</button>
+          <button id="copy" class="btn btn-ghost" aria-label="Copiar frase">Copiar</button>
+          <a id="share" class="btn btn-ghost" target="_blank" rel="noopener" aria-label="Compartilhar">Compartilhar</a>
+        </div>
+      </div>
+    </section>
 
-    <p class="signature">Eric Carolo</p>
+    <footer class="footer">
+      <p class="signature">© <span class="sig-name">Eric Carolo</span></p>
+    </footer>
+  </main>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
