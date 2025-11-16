@@ -66,3 +66,15 @@ body {
     transform: translateY(-3px);
     background: #f3f3f3;
 }
+.signature {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(3px);
+    padding: 4px 10px;
+    border-radius: 8px;
+}
