@@ -1,114 +1,71 @@
-/* ---- FUNDO ANIMADO 3D ---- */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+:root{
+  --bg:#ffffff;
+  --text:#0b0b0b;
+  --muted:#6b6b6b;
+  --gold:#D4AF37;
+  --card:#ffffff;
+  --glass: rgba(0,0,0,0.03);
+  --radius:18px;
 }
 
-/* camada de efeito */
-.bg-effect {
-    position: fixed;
-    width: 120%;
-    height: 120%;
-    background: radial-gradient(circle at 30% 30%, #8b5cf6, transparent 60%),
-                radial-gradient(circle at 70% 70%, #ec4899, transparent 60%),
-                radial-gradient(circle at 50% 20%, #4f46e5, transparent 60%);
-    filter: blur(80px);
-    animation: move 20s infinite alternate ease-in-out;
-    z-index: -1;
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+body{background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:28px;display:flex;align-items:center;justify-content:center}
+
+/* layout centralizado */
+.wrap{width:100%;max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:28px;align-items:stretch}
+
+/* cabeçalho */
+.header{display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-text h1{margin:0;font-family:"Playfair Display",serif;font-weight:600;font-size:1.25rem;letter-spacing:0.2px}
+.sub{display:block;color:var(--muted);font-size:0.85rem;margin-top:2px}
+
+/* cartão principal */
+.card{
+  background: linear-gradient(180deg, rgba(250,250,250,1), rgba(248,248,248,1));
+  border-radius:var(--radius);
+  padding:34px;
+  box-shadow: 0 10px 30px rgba(12,12,12,0.08);
+  border: 1px solid rgba(0,0,0,0.04);
+  display:flex;flex-direction:column;gap:18px;align-items:stretch;
+  min-height:160px;
 }
 
-@keyframes move {
-    0% { transform: translate(0px, 0px) scale(1.0); }
-    50% { transform: translate(-60px, 40px) scale(1.2); }
-    100% { transform: translate(40px, -50px) scale(1.1); }
+/* frase */
+.phrase{
+  margin:0;
+  font-family:"Playfair Display", serif;
+  font-size:1.6rem;
+  line-height:1.35;
+  color:var(--text);
+  text-align:left;
+  transition:opacity .35s ease, transform .35s ease;
 }
 
-/* ---- CONTAINER ---- */
-.container {
-    text-align: center;
-    width: 90%;
-    max-width: 550px;
-    padding: 20px;
-}
+/* autor e controles */
+.meta{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.author{color:var(--muted);font-size:0.95rem}
 
-/* ---- TÍTULO ---- */
-.title {
-    font-size: 2.3rem;
-    color: white;
-    font-family: "Playfair Display", serif;
-    margin-bottom: 25px;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
+/* botões */
+.controls{display:flex;gap:10px}
+.btn{border-radius:12px;padding:10px 14px;font-weight:600;font-size:0.95rem;border:1px solid rgba(0,0,0,0.06);cursor:pointer;background:transparent}
+.btn-primary{background:linear-gradient(90deg,var(--gold), #c89b2a);color:#111;border:none;box-shadow:0 6px 18px rgba(212,175,55,0.12)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid rgba(11,11,11,0.06)}
 
-/* ---- CARTÃO DE FRASE ---- */
-.card {
-    background: rgba(255, 255, 255, 0.18);
-    border-radius: 22px;
-    padding: 25px;
-    backdrop-filter: blur(15px);
-    color: white;
-    font-size: 1.35rem;
-    font-weight: 300;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
-    min-height: 120px;
-    transition: all .4s ease;
-    transform: scale(1);
-}
+/* hover */
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(212,175,55,0.16)}
+.btn-ghost:hover{background:rgba(0,0,0,0.02)}
 
-/* efeito quando troca frase */
-.card.fade {
-    opacity: 0;
-    transform: scale(0.95);
-}
+/* footer assinatura */
+.footer{display:flex;justify-content:flex-end}
+.signature{font-family:"Playfair Display",serif;color:var(--muted);background:rgba(212,175,55,0.08);padding:6px 12px;border-radius:9px}
+.sig-name{background:linear-gradient(90deg,var(--gold), #f2e1a4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700}
 
-/* ---- BOTÃO ---- */
-.btn {
-    background: white;
-    color: #4f46e5;
-    padding: 15px 35px;
-    margin-top: 25px;
-    font-size: 1.15rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 14px;
-    cursor: pointer;
-    transition: .3s ease;
-}
-
-.btn:hover {
-    background: #f3f2ff;
-    transform: translateY(-4px);
-}
-
-/* ---- ASSINATURA PREMIUM ---- */
-.signature {
-    position: fixed;
-    bottom: 22px;
-    right: 25px;
-    padding: 6px 16px;
-    font-family: "Playfair Display", serif;
-    font-size: 1.1rem;
-
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-
-    background-image: linear-gradient(90deg, #fff1b1, #ffe27a, #fff1b1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    border-radius: 12px;
-    text-shadow: 0 0 18px rgba(255,255,200,0.6);
-    animation: glow 4s infinite ease-in-out;
-}
-
-@keyframes glow {
-    0% { filter: brightness(0.9); }
-    50% { filter: brightness(1.4); }
-    100% { filter: brightness(0.9); }
+/* pequeno dispositivo */
+@media (max-width:640px){
+  .phrase{font-size:1.25rem}
+  .brand-text h1{font-size:1rem}
+  .card{padding:20px}
+  .controls{flex-wrap:wrap}
 }
